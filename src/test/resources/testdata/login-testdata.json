@@ -1,0 +1,26 @@
+{
+  "validUsers": [
+    {"username": "testuser001", "password": "Test@Password1", "rememberMe": false},
+    {"username": "testuser002", "password": "Test@Password2", "rememberMe": true}
+  ],
+  "invalidCredentials": [
+    {"username": "testuser001", "password": "WrongPassword", "expectedStatus": 401},
+    {"username": "nonexistentuser", "password": "AnyPassword", "expectedStatus": 401}
+  ],
+  "lockedCredentials": [
+    {"username": "lockeduser001", "password": "Test@Password1", "expectedStatus": 403}
+  ],
+  "sqlInjectionPayloads": [
+    "' OR '1'='1",
+    "'; DROP TABLE users;--",
+    "' OR 1=1--",
+    "admin'--",
+    "' UNION SELECT null,null,null--"
+  ],
+  "xssPayloads": [
+    "<script>alert('xss')</script>",
+    "<img src=x onerror=alert(1)>",
+    "javascript:alert(1)",
+    "<svg onload=alert(1)>"
+  ]
+}
